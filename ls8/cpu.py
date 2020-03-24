@@ -7,15 +7,16 @@ class CPU:
 
     def __init__(self):
         """Construct a new CPU."""
-        self.ram = [0] * 256
+        #setup ram,register and pc
+        self.ram = [0] * 256 
         self.reg = [0] * 8
         self.pc = 0
-        pass
+        
 
     def load(self):
         """Load a program into memory."""
 
-        address = 0
+        address = 0 #pointer to currently executing instruction
 
         # For now, we've just hardcoded a program:
 
@@ -63,6 +64,13 @@ class CPU:
 
         print()
 
+    def ram_read(self, MAR):
+        return self.ram[MAR]
+
+    def raw_write(self, MAR, MDR):
+        self.reg[MAR] = MDR
+    
+
     def run(self):
         """Run the CPU."""
         #create instructions for LDI, PRN, and HLT programs
@@ -103,8 +111,4 @@ class CPU:
                 print(f"Invalid Command: {self.ram[self.pc]}")
                 sys.exit(1)
 
-    def ram_read(self, MAR):
-        return self.ram[MAR]
-
-    def raw_write(self, MAR, MDR):
-        self.reg[MAR] = MDR
+  
