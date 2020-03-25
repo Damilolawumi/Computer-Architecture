@@ -149,6 +149,15 @@ class CPU:
         operand_b = self.reg[operand_a]
         self.ram[self.reg[SP]] = operand_b
 
+
+     #method to handle popping from the stack to the register
+    def handle_pop(self):
+        operand_a = self.ram_read(self.pc + 1)
+        # copy the value from the address pointed to by SP to the given reg
+        operand_b = self.ram[self.reg[SP]]
+        self.reg[operand_a] = operand_b
+        #increment the SP
+        self.reg[SP] += 1  
      
 
     def run(self):
